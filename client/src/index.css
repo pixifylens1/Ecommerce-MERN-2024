@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Page not Found CSS */
+.pnf{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 65vh;
+}
+.pnf-title{
+  font-size: 100px;
+  font-weight: 700;
+}
+.pnf-heading{
+  font-weight: normal;
+}
+.pnf-btn{
+  padding: 10px;
+  background: #000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+} 
+
+/* Navbar css */
+.navbar{
+  font-family: "Poppins", serif;
+  font-size: 17px;
+  text-transform: uppercase;
+  line-height: 26px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1) !important;
+
+}
+.nav-Link{
+  font-weight: 300 !important;
+}
+.active{
+  border-bottom: 2px solid black;
+}
+
+.navbar-brand{
+  font-weight: 400;
+  
+  font-family: 'roboto',sans-serif;
+  letter-spacing: 2px;
+}
+/* ------footer-------- */
+.footer{
+  color: white;
+  background:linear-gradient(90deg, #000000 0%, #434343 100%);
+  padding: 25px;
+
+}
+.footer a{
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+.footer a:hover{
+  color: #f1f1f1;
+  border-bottom: 2px solid #f1f1f1;
+}
+/* 
+  font-family: "Poppins", serif;
+   */
+
+/*
+  font-family: "Playfair Display", serif;
+  
+} */
+
