@@ -4,7 +4,7 @@ import slugify from "slugify";
 import { get } from "http";
 export const createProductController = async (req, res) => {
   try {
-    const { name, slug, description, price, category, quantity, shipping } =
+    const { name, description, price, category, quantity, shipping } =
       req.fields; //fields is a property of formidable which is used to get the form data
     const { photo } = req.files; //files is a property of formidable which is used to get the file data
 
@@ -15,11 +15,11 @@ export const createProductController = async (req, res) => {
           success: false,
           message: "Name is Required",
         });
-      case !slug:
-        return res.status(400).send({
-          success: false,
-          message: "Slug is Required",
-        });
+      // case !slug:
+      //   return res.status(400).send({
+      //     success: false,
+      //     message: "Slug is Required",
+      //   });
       case !description:
         return res.status(400).send({
           success: false,
