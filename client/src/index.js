@@ -9,9 +9,10 @@ import { AuthProvider } from './Context/Auth';
 import "antd/dist/reset.css";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <AuthProvider>
+  //Wrap the App component with AuthProvider to access the Auth Context
+<AuthProvider> 
 
-  <BrowserRouter>
+  <BrowserRouter> 
   
     <App />
   </BrowserRouter> 
