@@ -7,15 +7,18 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 import { AuthProvider } from './Context/Auth';
 import "antd/dist/reset.css";
+import { SearchProvider } from './Context/Search';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   //Wrap the App component with AuthProvider to access the Auth Context
 <AuthProvider> 
+  <SearchProvider>
 
   <BrowserRouter> 
   
     <App />
   </BrowserRouter> 
+  </SearchProvider>
   </AuthProvider>
 
 );

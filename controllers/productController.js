@@ -226,3 +226,119 @@ export const updateProductController = async (req, res) => {
         });
       }
 }
+//Filter Controller
+export const productFilterControllers = async(req,res)=>{
+try {
+  const {checked,selectedPrice} = req.body;
+  let args = {};
+  if(checked.length>0){
+    args.category = checked;
+  }
+  if(selectedPrice.length){
+    args.price = {$gte:selectedPrice[0],$lte:selectedPrice[1]}
+  }
+  const products = await productModel.find(args);
+
+  res.status(200).send({
+    success: true,
+    products,
+    message: "Products Filtered Successfully",
+  });
+
+} catch (error) {
+  console.log("Error:", error);
+
+
+  res.status(400).send({
+    success: false,
+    error: error.message,
+    message: "Error In Filtering Products"
+  });
+}
+
+}
+
+//product count
+export const productCountController = async(req,res)=>{
+  try {
+    const total = await productModel.find({}).estimatedDocumentCount();
+    res.status(200).send({
+      success: true,
+      total,
+      message: "Products Counted Successfully",
+    });
+  } catch (error) {
+    console.log("Error:", error);
+    res.status(400).send({
+      success: false,
+      error: error.message,
+      message: "Error In Counting Products"
+    });
+  }
+}
+//product per page
+export const productlistcontroller = async(req,res)=>{
+  try {
+    const perPage = 3;
+    const page = req.params.page ? req.params.page : 1;
+    const products = await productModel.find({}).select("-photo").skip((page-1)*perPage).limit(perPage).sort({createdAt:-1});
+    res.status(200).send({
+      success: true,
+      products,
+      message: "Products Fetched Successfully",
+    });
+  } catch (error) {
+    console.log("Error:", error);
+    res.status(400).send({
+      success: false,
+      error: error.message,
+      message: "Error In Getting per page Products"
+    });
+  }
+}
+//search product
+export const searchproductControllers = async(req,res)=>{
+  try {
+    const {keyword} = req.params;
+    if(!keyword){
+      return res.status(400).send({
+        success: false,
+        message: "Keyword is Required",
+      });
+    }
+    const results = await productModel.find({
+      $or:[
+        {name:{$regex:keyword,$options:'i'}},
+        {description:{$regex:keyword,$options:'i'}}
+      ]
+    }).select("-photo");
+    res.json(results)
+  } catch (error) {
+    console.log("Error:", error);
+    res.status(400).send({
+      success: false,
+      error: error.message,
+      message: "Error In Searching Products"
+    });
+  }
+}
+
+//related products
+export const relatedproductController = async(req,res)=>{
+  try {
+    const {pid,cid} = req.params;
+    const products = await productModel.find({_id:{$ne:pid},category:cid}).select("-photo").limit(3).populate("category");
+    res.status(200).send({
+      success: true,
+      products,
+      message: "Related Products Fetched Successfully",
+    });
+  } catch (error) {
+    console.log("Error:", error);
+    res.status(400).send({
+      success: false,
+      error: error.message,
+      message: "Error In Getting Related Products"
+    });
+  }
+}

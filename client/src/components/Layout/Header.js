@@ -3,6 +3,7 @@ import React from 'react'
 import { NavLink,Link } from 'react-router-dom'
 import { useAuth } from '../../Context/Auth'
 import toast from 'react-hot-toast'
+import SearchInput from '../Form/SearchInput.js'
 const Header = () => {
   const [Auth,setAuth] = useAuth();
   const handlelogout=()=>{
@@ -26,6 +27,7 @@ const Header = () => {
       Brand Name
       </Link>
       <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+        <SearchInput/>
         <li className="nav-item">
           <NavLink to='/' className="nav-link"  >Home</NavLink>
         </li>

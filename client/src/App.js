@@ -18,6 +18,8 @@ import Profile from './pages/user/Profile';
 import Order from './pages/user/Order';
 import Products from './pages/Admin/Products.js';
 import UpdateProduct from './pages/Admin/UpdateProduct.js';
+import SearchPage from './pages/SearchPage.js';
+import Productdetails from './pages/Productdetails.js';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
       
       <Routes>
         <Route path="/" element={<Homepage />} />
+        <Route path="/product/:slug" element={<Productdetails />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path='/dashboard' element={<PrivateRoute />} >
 
 
