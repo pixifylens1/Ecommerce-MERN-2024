@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoute.js'
 import categoryRoutes from './routes/categoryRoute.js'
 import productRoutes from './routes/productRoutes.js'
 import cors from 'cors';
+
 //configure env
 dotenv.config();
 
@@ -24,6 +25,14 @@ app.use(cors())
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/category', categoryRoutes)
 app.use('/api/v1/product', productRoutes)
+
+//static files
+// app.use(express.static(path.join(__dirname,'./client/build'))); //for production
+
+// app.get('*',function(req,res){
+//     res.sendFile(path.join(__dirname,'./client/build/index.html'));
+
+// })
 
 //rest api
 app.get('/', (req, res) => {
